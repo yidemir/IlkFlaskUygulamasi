@@ -1,0 +1,16 @@
+{% extends "base.html" %}
+{% block content %}
+{% if posts %}
+    {% for post in posts %}
+        <article class="panel panel-default">
+            <header class="panel-heading">
+                <h4 class="panel-title"><a href="/read/{{ post[0] }}">{{ post[1] }}</a></h4>
+            </header>
+            <div class="panel-body">{{ post[2] }}</div>
+            <footer class="panel-footer">
+                {{ post[3] }}
+            </footer>
+        </article>
+    {% endfor %}
+{% endif %}
+{% endblock %}
