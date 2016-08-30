@@ -1,0 +1,54 @@
+<!doctype html>
+<html lang="tr">
+    <head>
+        {% block head %}
+            <meta charset="utf-8">
+            <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/3.3.7/css/bootstrap.min.css">
+            <title>Gönderi Sistemi {% block title %}{% if title %}- {{ title }}{% endif %}{% endblock %}</title>
+            <style>
+                body {
+                    font-size: 15px;
+                }
+
+                .container {
+                    max-width: 800px;
+                }
+            </style>
+        {% endblock %}
+    </head>
+    <body>
+        <hr>
+        <header class="container">
+            <ul class="list-inline">
+                <li><a href="/">Ana Sayfa</a></li>
+                <li><a href="/create">Oluştur</a></li>
+            </ul>
+        </header>
+        <hr>
+    {% with messages = get_flashed_messages() %}
+        {% if messages %}
+        <div class="container"><div class="alert alert-info">
+            <ul class="list-unstyled">
+                {% for message in messages %}
+                <li>{{ message }}</li>
+                {% endfor %}
+            </ul>
+        </div></div>
+        {% endif %}
+    {% endwith %}
+        <main class="container">
+            <div class="col-md-9">
+                {% block content %}{% endblock %}
+            </div>
+            <aside class="col-md-3">
+                {% block sidebar %}{% endblock %}
+            </aside>
+        </main>
+        <footer class="container">
+            {% block footer %}
+            	<hr>
+                &copy; Copyleft
+            {% endblock %}
+        </footer>
+    </body>
+</html>
